@@ -55,7 +55,21 @@ var rerun = function() {
 	$('#result').text('Result: ' + (result ? 'OK' : 'NG'));
 }
 
+var parseQuery = function() {
+	var query = {};
+	var tmp = location.search.substring(1).split('&');
+	for(var data in tmp) {
+		var t = tmp[data].split('=', 2);
+		query[t[0]] = decodeURIComponent(t[1]);
+	}
+	return query;
+}
+
 $(document).ready(function() {
+	var query = parseQuery();
+	if(query.input) {
+		$('#input').val(query.input);
+	}
 	rerun();
 });
 
