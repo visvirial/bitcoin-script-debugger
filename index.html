@@ -32,6 +32,21 @@
 				<h1>Bitcoin Script Online Debugger</h1>
 			</div>
 			
+			<p><a href="javascript:$('#usage').toggle('fast');">&gg; Toggle Usage</a></p>
+			
+			<div id="usage" style="display:none;">
+				<p>Enter a script to debug in the following textarea. The script is automatically parsed and executed. The step-by-step execution status (incl. stack status) will be shown.</p>
+				<p>Notice that there are some restriction (some of them are inherited from the backend library, Bitcore):</p>
+				<ul>
+					<li>Hex data should be prefixed by "0x".</li>
+					<li>Hex data to be pushed onto the stack should be prefixed by the number of bytes to be pushed (e.g. "4 0x01020304") or OP_PUSHDATA? should be used (e.g. "OP_PUSHDATA1 4 0x01020304").</li>
+					<li>Signature checks such as OP_CHECKSIG and OP_CHECKMULTISIG are not supported (yet).</li>
+				</ul>
+				<p>Users not being familiar with Bitcoin's script language should refer to <a href="https://en.bitcoin.it/wiki/Script">this article</a> at Bitcoin Wiki.</p>
+				<p>Tha sample code shown by default is "transaction puzzle" described at <a href="https://en.bitcoin.it/wiki/Script#Transaction_puzzle">Bitcoin Wiki</a>. The first 80byte pushdata is the hex-encoded block header of the genesis block and the second to last push data is the doulbe-SHA256 hash of it, namely the block hash (reversed block ID) of the genesis block.</p>
+				<p>Enjoy scripting!</p>
+			</div>
+			
 			<h2>Input</h2>
 			
 			<textarea id="input" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
@@ -72,7 +87,7 @@ OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000
 			
 			<footer>
 				<p>Copyright <a href="https://twitter.com/visvirial">@visvirial</a> 2016. All rights are reserved.</p>
-				<p>Powered by <a href="https://bitcore.io/">Bitcore</a> by BitPay.</p>
+				<p>Powered by <a href="https://bitcore.io/">Bitcore</a> (developed by <a href="https://bitpay.com/">BitPay</a>).</p>
 				<p>The source code of this project is publicly available at <a href="https://github.com/visvirial/bitcoin-script-debugger">GitHub</a>.</p>
 			</footer>
 			
