@@ -67,6 +67,8 @@ var parseQuery = function() {
 }
 
 $(document).ready(function() {
+	$('[readonly]').css('background-color', '#ddd');
+	$('[readonly]').on('click', function() {this.select()});
 	var query = parseQuery();
 	if(query.input) {
 		$('#input').val(query.input);
