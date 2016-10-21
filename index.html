@@ -34,7 +34,8 @@
 			
 			<h2>Input</h2>
 			
-			<textarea id="input" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_5 OP_DUP OP_ADD OP_10 OP_EQUAL</textarea>
+			<textarea id="input" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
+OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL</textarea>
 			
 			<h2>Results</h2>
 			
@@ -52,7 +53,8 @@
 			<table id="result-steps" class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Stack</th>
+						<th style="width:50px;">#Step</th>
+						<th>Resulted Stack</th>
 						<th>Executed OP Code</th>
 						<th>Remaining OP Code</th>
 					</tr>
