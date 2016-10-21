@@ -19,6 +19,7 @@ var rerun = function() {
 	}
 	$('#result-text').val(script.toString());
 	$('#result-hex').val('0x'+script.toHex());
+	$('#result-url').val(location.href.split(/[?#]/)[0]+'?input='+encodeURIComponent(script.toString()));
 	var interpreter = new bitcore.Script.Interpreter();
 	interpreter.set({script: script});
 	var err = '';
