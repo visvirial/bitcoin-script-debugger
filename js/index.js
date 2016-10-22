@@ -10,6 +10,16 @@ var showqr = function(type) {
 	$('#modal-qr').modal();
 };
 
+var getInput = function() {
+	var input = $('#input').val();
+	// Strings after "//" or "#" should be ignored.
+	input = input.replace(/\/\/.*/g, '');
+	input = input.replace(/#.*/g, '');
+	// Strings betwee "/*" and "*/" should be ignored.
+	input = input.replace(/\/\*[\s\S]*?\*\//mg, '');
+	return input.trim();
+};
+
 var rerun = function() {
 	// Initialize.
 	$('#result-text').val('');
@@ -18,7 +28,8 @@ var rerun = function() {
 	$('#result-error').hide();
 	$('#result-steps tbody *').remove();
 	// Read input.
-	var input = $('#input').val().trim();
+	var input = getInput();
+	// Pass input to the interpreter.
 	var chunks = input.split(/\s+/);
 	try {
 		var script = bitcore.Script.fromString(chunks.join(' '));
