@@ -50,23 +50,40 @@
 			
 			<h2>Input</h2>
 			
-			<textarea id="input" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
+			<textarea id="input" class="form-control" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
 OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL</textarea>
 			
 			<h2>Results</h2>
 			
 			<h3>Link to This Script</h3>
 			
-			<input type="text" id="result-url" readonly="readonly" style="width:100%;" />
+			<input type="text" class="form-control" id="result-url" readonly="readonly" style="width:100%;" />
 			
 			<h3>Human-readable Text</h3>
 			
 			<div id="result-text-error" style="color:red;">Failed to parse input script. Please check the syntax.</div>
-			<textarea id="result-text" rows="3" style="width:100%;" readonly="readonly"></textarea>
+			<textarea id="result-text" class="form-control" rows="3" style="width:100%;" readonly="readonly"></textarea>
 			
 			<h3>Hex</h3>
 			
-			<textarea id="result-hex" rows="3" style="width:100%;" readonly="readonly"></textarea>
+			<textarea id="result-hex" class="form-control" rows="3" style="width:100%;" readonly="readonly"></textarea>
+			
+			<h3>P2SH Address</h3>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<div class="input-group">
+						<span class="input-group-addon">Mainnet</span>
+						<input type="text" class="form-control" id="result-address-mainnet" readonly="readonly" style="width:100%;" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group">
+						<span class="input-group-addon">Testnet</span>
+						<input type="text" class="form-control" id="result-address-testnet" readonly="readonly" style="width:100%;" />
+					</div>
+				</div>
+			</div>
 			
 			<h3>Result</h3>
 			

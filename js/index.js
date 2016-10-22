@@ -20,6 +20,9 @@ var rerun = function() {
 	$('#result-text').val(script.toString());
 	$('#result-hex').val('0x'+script.toHex());
 	$('#result-url').val(location.href.split(/[?#]/)[0]+'?input='+encodeURIComponent(script.toString()));
+	var scriptHash = bitcore.crypto.Hash.sha256ripemd160(script.toBuffer());
+	$('#result-address-mainnet').val(bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.mainnet));
+	$('#result-address-testnet').val(bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.testnet));
 	var interpreter = new bitcore.Script.Interpreter();
 	interpreter.set({script: script});
 	var err = '';
