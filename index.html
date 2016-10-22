@@ -12,12 +12,14 @@
 		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 		
 		<!-- Load Bootstrap. -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		
 		<!-- Load BitcoinJS -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bitcoinjs-lib/0.2.0-1/bitcoinjs-min.js" integrity="sha256-FilB5ir32toR4c80H4e31Wzh7MbA0kOd/LzvRxgletA=" crossorigin="anonymous"></script>
 		
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 		<script type="text/javascript" src="js/bitcore-lib.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		
@@ -25,6 +27,26 @@
 		
 	</head>
 	<body>
+		
+		<div class="modal fade" id="modal-qr" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">QR code</h4>
+					</div>
+					<div class="modal-body">
+						<div class="text-center">
+							<div id="qr-image"></div>
+							<p id="qr-text"></p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 		
 		<div class="container">
 			
@@ -75,12 +97,14 @@ OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000
 					<div class="input-group">
 						<span class="input-group-addon">Mainnet</span>
 						<input type="text" class="form-control" id="result-address-mainnet" readonly="readonly" style="width:100%;" />
+						<span class="input-group-addon"><a href="javascript:showqr('mainnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="input-group">
 						<span class="input-group-addon">Testnet</span>
 						<input type="text" class="form-control" id="result-address-testnet" readonly="readonly" style="width:100%;" />
+						<span class="input-group-addon"><a href="javascript:showqr('testnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
 					</div>
 				</div>
 			</div>
