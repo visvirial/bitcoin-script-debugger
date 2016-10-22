@@ -49,7 +49,7 @@ var rerun = function() {
 	var result = true;
 	for(; interpreter.pc<interpreter.script.chunks.length;) {
 		result = interpreter.step();
-		var stack = interpreter.stack.map(function(item) {return item.toString('hex');}).reverse().join('<br/>');
+		var stack = interpreter.stack.map(function(item) { return item.length==0 ? 'NULL' : item.toString('hex'); }).reverse().join('<br/>');
 		var executed = (new bitcore.Script()).set({chunks: interpreter.script.chunks.slice(interpreter.pc-1, interpreter.pc)}).toString();
 		var remaining = (new bitcore.Script()).set({chunks: interpreter.script.chunks.slice(interpreter.pc)}).toString();
 		$('#result-steps tbody').append('<tr><td>' + [interpreter.pc, stack, executed, remaining].join('</td><td style="max-width:100px;overflow-x:scroll;">') + '</td></tr>');
