@@ -78,6 +78,57 @@ var parseQuery = function() {
 	return query;
 }
 
+var scriptTemplates = {
+	empty: {
+		title: 'Empty',
+		description: 'Empty script.',
+		script: '',
+	},
+	p2pkh: {
+		title: 'P2PKH',
+		description: 'Pay-to-PubKey-Hash (P2PKH / P2PH) script.',
+		script: '<sig> <pubKey>\nOP_DUP OP_HASH160 <pubkeyHash> OP_EQUALVERIFY OP_CHECKSIG',
+	},
+	p2pubkey: {
+		title: 'P2PubKey',
+		description: 'Pay-to-PubKey script (absolate).',
+		script: '<sig>\n<pubKey> OP_CHECKSIG',
+	},
+	p2sh: {
+		title: 'P2SH',
+		description: 'Pay-to-Script-Hash (P2SH) script.',
+		script: '<arg1> <arg2>... <serializedScript>\nOP_HASH160 <scriptHash> OP_EQUAL',
+	},
+	op_return: {
+		title: 'OP_RETURN',
+		description: 'Unspendable output with any user-defined commitments.',
+		script: 'OP_RETURN <data1> <data2>...',
+	},
+	anyone_can_spend: {
+		title: 'Anyone-Can-Spend',
+		description: 'Outputs spendable by anyone.',
+		script: 'OP_TRUE',
+	},
+	puzzle: {
+		title: 'Transaction Puzzle',
+		description: 'Tranasction puzzle describled at Bitcoin wiki.',
+		script: 'OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c\nOP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL',
+	},
+};
+
+var selectTemplate = function(title) {
+	$('#input').val(scriptTemplates[title].script);
+	rerun();
+}
+
+var initTemplateSelector = function() {
+	// Initialize template selector.
+	for(var i in scriptTemplates) {
+		var st = scriptTemplates[i];
+		$('#template-selector').append('<button type="button" title="'+st.description+'" class="btn btn-default" onclick="selectTemplate(\''+i+'\')">'+st.title+'</button>');
+	}
+}
+
 $(document).ready(function() {
 	$('[readonly]').css('background-color', '#ddd');
 	$('[readonly]').on('click', function() {this.select()});
@@ -85,6 +136,7 @@ $(document).ready(function() {
 	if(query.input) {
 		$('#input').val(query.input);
 	}
+	initTemplateSelector();
 	rerun();
 });
 
