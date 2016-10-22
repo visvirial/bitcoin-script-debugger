@@ -72,36 +72,36 @@
 			
 			<h2>Input</h2>
 			
-			<textarea id="input" class="form-control" style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
+			<textarea id="input" class="form-control" title="Enter your script here. It will be executed and evaluated automatically." style="width:100%;height:100px;" onkeydown="rerun();" onkeyup="rerun();" onchange="rerun();">OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c
 OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL</textarea>
 			
 			<h2>Results</h2>
 			
 			<h3>Link to This Script</h3>
 			
-			<input type="text" class="form-control" id="result-url" readonly="readonly" style="width:100%;" />
+			<input type="text" class="form-control" id="result-url" title="You can restart scripting by bookmarking this, or tell friends your beautiful script via this URL!" readonly="readonly" style="width:100%;" />
 			
 			<h3>Human-readable Text</h3>
 			
 			<div id="result-text-error" style="color:red;">Failed to parse input script. Please check the syntax.</div>
-			<textarea id="result-text" class="form-control" rows="3" style="width:100%;" readonly="readonly"></textarea>
+			<textarea id="result-text" class="form-control" title="Formatted script." rows="3" style="width:100%;" readonly="readonly"></textarea>
 			
 			<h3>Hex</h3>
 			
-			<textarea id="result-hex" class="form-control" rows="3" style="width:100%;" readonly="readonly"></textarea>
+			<textarea id="result-hex" class="form-control" title="Binary-encoded (assembled) script." rows="3" style="width:100%;" readonly="readonly"></textarea>
 			
 			<h3>P2SH Address</h3>
 			
 			<div class="row">
 				<div class="col-md-6">
-					<div class="input-group">
+					<div class="input-group" title="Pay-to-Script-Hash (P2SH) address of your script (mainnet). You can fund your coins to this address to test your script on the real network.">
 						<span class="input-group-addon">Mainnet <span style="color:white;background-color:#ff9900;border-radius:50%;padding:2px 5px 3px 5px;"><span class="glyphicon glyphicon-btc" style="font-size:80%;"></span></span></span>
 						<input type="text" class="form-control" id="result-address-mainnet" readonly="readonly" style="width:100%;" />
 						<span class="input-group-addon"><a href="javascript:showqr('mainnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="input-group">
+					<div class="input-group" title="Pay-to-Script-Hash (P2SH) address of your script (testnet). You can fund your coins to this address to test your script on the real network.">
 						<span class="input-group-addon">Testnet <span style="color:white;background-color:#66f826;border-radius:50%;padding:2px 5px 3px 5px;"><span class="glyphicon glyphicon-btc" style="font-size:80%;"></span></span></span>
 						<input type="text" class="form-control" id="result-address-testnet" readonly="readonly" style="width:100%;" />
 						<span class="input-group-addon"><a href="javascript:showqr('testnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
@@ -123,14 +123,13 @@ OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000
 			<table id="result-steps" class="table table-bordered">
 				<thead>
 					<tr>
-						<th style="width:50px;">#Step</th>
-						<th>Resulted Stack</th>
-						<th>Executed OP Code</th>
-						<th>Remaining OP Codes</th>
+						<th style="width:50px;" title="The # of steps executed (program counter).">#Step</th>
+						<th title="The stack status after a step execution.">Resulted Stack</th>
+						<th title="An OP code executed at this step.">Executed OP Code</th>
+						<th title="OP codes wainting for execution.">Remaining OP Codes</th>
 					</tr>
 				</thead>
-				<tbody>
-				</tbody>
+				<tbody></tbody>
 			</table>
 			
 			<hr />
@@ -140,7 +139,7 @@ OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000
 					<p>Copyright <a href="https://twitter.com/visvirial">@visvirial</a> 2016. All rights are reserved.</p>
 				</div>
 				<div class="pull-right">
-					<p>[ Powered by <a href="https://bitcore.io/">Bitcore</a> | <a href="https://github.com/visvirial/bitcoin-script-debugger">Source Repo (GitHub)</a> | Hosted at <a href="https://pages.github.com/">GitHub Pages</a> ]</p>
+					<p>[ Powered by <a href="https://bitcore.io/">Bitcore</a> | <a href="https://github.com/visvirial/bitcoin-script-debugger">Source Repo (GitHub)</a> | Hosted at <a href="https://pages.github.com/">GitHub Pages</a> | <a href="https://github.com/visvirial/bitcoin-script-debugger/archive/master.zip" title="This service is serverless and can be run locally in case of internet connection trouble!">Download ZIP</a> ]</p>
 				</div>
 			</footer>
 			
