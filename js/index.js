@@ -135,6 +135,8 @@ $(document).ready(function() {
 	var query = parseQuery();
 	if(query.input) {
 		$('#input').val(query.input);
+	} else {
+		$('#input').val(scriptTemplates.puzzle.script);
 	}
 	initTemplateSelector();
 	rerun();
