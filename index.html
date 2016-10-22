@@ -107,14 +107,20 @@
 					<div class="input-group" title="Pay-to-Script-Hash (P2SH) address of your script (mainnet). You can fund your coins to this address to test your script on the real network.">
 						<span class="input-group-addon">Mainnet <span style="color:white;background-color:#ff9900;border-radius:50%;padding:2px 5px 3px 5px;"><span class="glyphicon glyphicon-btc" style="font-size:80%;"></span></span></span>
 						<input type="text" class="form-control" id="result-address-mainnet" readonly="readonly" style="width:100%;" />
-						<span class="input-group-addon"><a href="javascript:showqr('mainnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
+						<span class="input-group-addon">
+							<a href="" id="result-address-mainnet-explorer"><span class="glyphicon glyphicon-search"></span></a>
+							<a href="javascript:showqr('mainnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a>
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="input-group" title="Pay-to-Script-Hash (P2SH) address of your script (testnet). You can fund your coins to this address to test your script on the real network.">
 						<span class="input-group-addon">Testnet <span style="color:white;background-color:#66f826;border-radius:50%;padding:2px 5px 3px 5px;"><span class="glyphicon glyphicon-btc" style="font-size:80%;"></span></span></span>
 						<input type="text" class="form-control" id="result-address-testnet" readonly="readonly" style="width:100%;" />
-						<span class="input-group-addon"><a href="javascript:showqr('testnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a></span>
+						<span class="input-group-addon">
+							<a href="" id="result-address-testnet-explorer"><span class="glyphicon glyphicon-search"></span></a>
+							<a href="javascript:showqr('testnet');" style="color:black;"><span class="glyphicon glyphicon-qrcode"></span></a>
+						</span>
 					</div>
 				</div>
 			</div>

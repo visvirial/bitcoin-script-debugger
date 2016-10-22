@@ -1,4 +1,7 @@
 
+const BLOCKEXPLORER_MAINNET_ADDRESS_ENDPOINT = 'https://blockchain.info/ja/address/:ADDRESS:';
+const BLOCKEXPLORER_TESTNET_ADDRESS_ENDPOINT = 'https://live.blockcypher.com/btc-testnet/address/:ADDRESS:';
+
 var bitcore = require('bitcore-lib');
 
 var showqr = function(type) {
@@ -42,8 +45,12 @@ var rerun = function() {
 	$('#result-hex').val('0x'+script.toHex());
 	$('#result-url').val(location.href.split(/[?#]/)[0]+'?input='+encodeURIComponent(script.toString()));
 	var scriptHash = bitcore.crypto.Hash.sha256ripemd160(script.toBuffer());
-	$('#result-address-mainnet').val(bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.mainnet));
-	$('#result-address-testnet').val(bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.testnet));
+	var addressMainnet = bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.mainnet);
+	$('#result-address-mainnet').val(addressMainnet);
+	$('#result-address-mainnet-explorer').attr('href', BLOCKEXPLORER_MAINNET_ADDRESS_ENDPOINT.replace(':ADDRESS:', addressMainnet));
+	var addressTestnet = bitcore.Address.fromScriptHash(scriptHash, bitcore.Networks.testnet);
+	$('#result-address-testnet').val(addressTestnet);
+	$('#result-address-testnet-explorer').attr('href', BLOCKEXPLORER_TESTNET_ADDRESS_ENDPOINT.replace(':ADDRESS:', addressTestnet));
 	var interpreter = new bitcore.Script.Interpreter();
 	interpreter.set({script: script});
 	var err = '';
