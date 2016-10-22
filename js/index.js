@@ -93,42 +93,71 @@ var scriptTemplates = {
 	empty: {
 		title: 'Empty',
 		description: 'Empty script.',
-		script: '',
+		script: [''],
 	},
 	p2pkh: {
 		title: 'P2PKH',
 		description: 'Pay-to-PubKey-Hash (P2PKH / P2PH) script.',
-		script: '<sig> <pubKey>\nOP_DUP OP_HASH160 <pubkeyHash> OP_EQUALVERIFY OP_CHECKSIG',
+		script: [
+			'# We use the following address to spend: https://blockchain.info/address/1AenoFbeG61b2B8G7Xv7vBeWYLgt1FfnAg',
+			'',
+			'##############################',
+			'# scriptSig: <sig> <pubKey>',
+			'##############################',
+			'# <sig>',
+			'OP_PUSHDATA1 71 0x30440220206fea7b21dbda9db2227c2d028d4e014c02fa1f29775eccea41fe70aeedb5aa022047e8e8d2b7983baa84a48f85ea55edfdbc5aae7001d46e2e6657a8d86c0c60d601',
+			'# <pubKey>',
+			'OP_PUSHDATA1 33 0x033ca9b849063327597b13fa4da8c98053302118ffa4d194090d636ba22906d657',
+			'',
+			'##############################',
+			'# scriptPubkey (checks if the hash of a given pubkey matches the address, and checks the signature validity)',
+			'##############################',
+			'OP_DUP OP_HASH160',
+			'# <pubkeyHash>',
+			'20 0x69dec09e9b32ffd447c80d413d58f0413e99208e',
+			'OP_EQUALVERIFY OP_CHECKSIG',
+		],
 	},
 	p2pubkey: {
 		title: 'P2PubKey',
 		description: 'Pay-to-PubKey script (absolate).',
-		script: '<sig>\n<pubKey> OP_CHECKSIG',
+		script: ['<sig>\n<pubKey> OP_CHECKSIG'],
 	},
 	p2sh: {
 		title: 'P2SH',
 		description: 'Pay-to-Script-Hash (P2SH) script.',
-		script: '<arg1> <arg2>... <serializedScript>\nOP_HASH160 <scriptHash> OP_EQUAL',
+		script: ['<arg1> <arg2>... <serializedScript>\nOP_HASH160 <scriptHash> OP_EQUAL'],
 	},
 	op_return: {
 		title: 'OP_RETURN',
 		description: 'Unspendable output with any user-defined commitments.',
-		script: 'OP_RETURN <data1> <data2>...',
+		script: [
+			'# scriptSig is empty.',
+			'# scriptPubkey: OP_RETURN <data1> <data2>...',
+			'OP_RETURN 4 0x12345678',
+		],
 	},
 	anyone_can_spend: {
 		title: 'Anyone-Can-Spend',
 		description: 'Outputs spendable by anyone.',
-		script: 'OP_TRUE',
+		script: ['OP_TRUE'],
 	},
 	puzzle: {
 		title: 'Transaction Puzzle',
 		description: 'Tranasction puzzle describled at Bitcoin wiki.',
-		script: 'OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c\nOP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL',
+		script: [
+			'# scriptSig (push block header of the genesis block)',
+			'OP_PUSHDATA1 80 0x0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c',
+			'',
+			'# scriptPubkey (take double-SHA256 hash and checks if the hash matches the genesis hash.)',
+			'OP_HASH256 32 0x6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL',
+		],
 	},
 };
 
 var selectTemplate = function(title) {
-	$('#input').val(scriptTemplates[title].script);
+	$('#input').val(scriptTemplates[title].script.join('\n'));
+	$('#input').attr('rows', scriptTemplates[title].script.length+5);
 	rerun();
 }
 
@@ -147,7 +176,7 @@ $(document).ready(function() {
 	if(query.input) {
 		$('#input').val(query.input);
 	} else {
-		$('#input').val(scriptTemplates.puzzle.script);
+		selectTemplate('puzzle');
 	}
 	initTemplateSelector();
 	rerun();
